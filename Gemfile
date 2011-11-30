@@ -12,4 +12,7 @@ gem "fog"
 gem "fpm"
 gem "builder"
 
+# deploy
+gem "alpha_omega"
+
 # vim: set ft=ruby:
