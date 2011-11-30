@@ -15,4 +15,9 @@ gem "builder"
 # deploy
 gem "alpha_omega"
 
+# configuration
+gem "tvd-microwave"
+gem "tvd-bundler"
+gem "tvd-git"
+
 # vim: set ft=ruby:
