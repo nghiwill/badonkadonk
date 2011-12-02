@@ -1,5 +1,9 @@
 #!/bin/bash
 
+for a in $(set | grep ^rvm_ | grep = | cut -d= -f1); do
+  unset $a
+done
+
 rvm_do="do"
 
 if [[ -f /usr/local/rvm/scripts/rvm ]]; then
