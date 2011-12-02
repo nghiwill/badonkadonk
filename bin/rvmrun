@@ -3,6 +3,7 @@
 rvm_do="do"
 
 if [[ -f /usr/local/rvm/scripts/rvm ]]; then
+  rvm_prefix="/usr/local"
   source /usr/local/rvm/scripts/rvm
   rvm_do="exec"
 elif [[ -f /etc/profile.d/rvm.sh ]]; then
