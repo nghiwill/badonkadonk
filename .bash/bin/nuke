@@ -1,4 +1,9 @@
 #!/bin/bash -e
 
+cd
+bundle check || { bundle install --local --path vendor/bundle && bundle check; }
+
+_HOSTS="$(echo $* | sed 's#  *#,#g')" bundle exec deploy deploy home
+
 cd ~/.microwave
 exec bundle exec chef-solo -c config/solo.rb -N localhost
