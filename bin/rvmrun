@@ -1,19 +1,11 @@
 #!/bin/bash
 
-for a in $(set | grep ^rvm_ | grep = | cut -d= -f1); do
-  unset $a
-done
-
-rvm_do="do"
+source $HOME/.bash/bin/_rvm
 
 if [[ -f /usr/local/rvm/scripts/rvm ]]; then
-  rvm_prefix="/usr/local"
-  source /usr/local/rvm/scripts/rvm
   rvm_do="exec"
-elif [[ -f /etc/profile.d/rvm.sh ]]; then
-  source /etc/profile.d/rvm.sh
 else
-  source $HOME/.rvm/scripts/rvm
+  rvm_do="do"
 fi
 
 ruby=$1; shift

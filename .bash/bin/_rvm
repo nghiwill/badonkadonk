@@ -1,0 +1,12 @@
+for a in $(set | grep ^rvm_ | grep = | cut -d= -f1); do
+  unset $a
+done
+
+if [[ -f /usr/local/rvm/scripts/rvm ]]; then
+  rvm_prefix="/usr/local"
+  source /usr/local/rvm/scripts/rvm
+elif [[ -f /etc/profile.d/rvm.sh ]]; then
+  source /etc/profile.d/rvm.sh
+else
+  source $HOME/.rvm/scripts/rvm
+fi
