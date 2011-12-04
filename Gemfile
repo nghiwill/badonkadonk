@@ -20,4 +20,7 @@ gem "tvd-microwave"
 gem "tvd-bundler"
 gem "tvd-git"
 
+# development
+gem "hub"
+
 # vim: set ft=ruby:
