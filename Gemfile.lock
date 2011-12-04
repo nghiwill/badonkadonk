@@ -89,11 +89,11 @@ GEM
     spoon (0.0.1)
     term-ansicolor (1.0.7)
     thor (0.14.6)
-    tvd-bundler (0.0.1)
+    tvd-bundler (0.0.2)
       microwave
-    tvd-git (0.0.1)
+    tvd-git (0.0.6)
       microwave
-    tvd-microwave (0.0.1)
+    tvd-microwave (0.0.2)
       microwave
     uuidtools (2.1.2)
     wirble (0.1.3)
