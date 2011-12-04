@@ -1,6 +1,9 @@
 [submodule ".vim"]
 	path = .vim
-	url = https://github.com/HeSYINUvSBZfxqA/junas
+	url = https://raw.github.com/HeSYINUvSBZfxqA/junas
 [submodule ".cue"]
 	path = .cue
-	url = http://github.com/HeSYINUvSBZfxqA/cue
+	url = http://raw.github.com/HeSYINUvSBZfxqA/cue
+[submodule ".rvm"]
+	path = .rvm
+	url = https://raw.github.com/HeSYINUvSBZfxqA/rvm

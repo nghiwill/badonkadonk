@@ -1,0 +1,15 @@
+#!/bin/bash
+
+rvm_do="do"
+
+if [[ -f /usr/local/rvm/scripts/rvm ]]; then
+  source /usr/local/rvm/scripts/rvm
+  rvm_do="exec"
+elif [[ -f /etc/profile.d/rvm.sh ]]; then
+  source /etc/profile.d/rvm.sh
+else
+  source $HOME/.rvm/scripts/rvm
+fi
+
+ruby=$1; shift
+rvm $ruby $rvm_do "$@"
