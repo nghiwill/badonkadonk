@@ -1,0 +1,4 @@
+#!/bin/bash
+
+lsof -n | awk '/\/.ssh\/master/ {print $2}' | sort -u | xargs kill
+ssh-agent -k

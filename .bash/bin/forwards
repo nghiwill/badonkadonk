@@ -1,0 +1,5 @@
+#!/bin/bash -fue
+
+date
+env | grep SSH | sort
+exec sleep 99999

@@ -1,0 +1,4 @@
+#/bin/bash
+
+build-install-iso support-base ubuntu-10.04.2-server-i386
+build-virtualbox support-base

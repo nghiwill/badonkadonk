@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec tail -f ~/etc/service/$1/log/current

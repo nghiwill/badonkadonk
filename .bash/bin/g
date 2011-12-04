@@ -1,0 +1,23 @@
+#!/bin/bash -e
+
+cmd=$1; shift
+
+case $cmd in
+  vendored)
+    url_vendor=$(git remote  -v | awk '$1 == "origin" && $NF == "(fetch)" { print $2 }')
+    git remote add vendor "$url_vendor"
+    ;;
+  ghpaged)
+    git branch -D gh-pages || true
+    git branch gh-pages
+    rm -rf .git/index
+    git clean -fdx
+    echo 'see the gh-pages branch'
+    git commit -m 'emptying, see the gh-pages branch'
+    git checkout gh-pages
+    ;;
+  *)
+    echo "ERROR: unknown $cmd $@" 1>&2
+    exit 1
+    ;;
+esac

@@ -1,0 +1,3 @@
+#!/bin/bash -fe
+
+exec bundle exec cap "$1" deploy"$2"

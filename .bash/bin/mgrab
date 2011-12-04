@@ -1,0 +1,3 @@
+#!/bin/bash -fue
+
+cat | while read -r url rest; do wget "$url" -O "$(echo $rest | sed 's# #-#g').jpg"; done

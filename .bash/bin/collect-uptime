@@ -1,0 +1,18 @@
+#!/bin/bash -fue
+
+delay=$1; shift
+
+case "$(hostname -s)" in
+  hotaru) max_history=450;;
+  arisu)  max_history=240;;
+
+esac
+
+while true; do
+  uptime="$(echo "$(uptime | awk '{print $(NF-2)}' | cut -d, -f1) * 100" | bc | cut -d. -f1)"
+  uptime_history="$(get uptime$delay)"
+  uptime_update="$uptime:$uptime_history"
+  put uptime$delay "$(echo "$uptime_update" | cut -d: -f1-$max_history)"
+  get uptime$delay
+  sleep $delay
+done

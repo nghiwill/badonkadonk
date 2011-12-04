@@ -1,0 +1,21 @@
+#!/bin/bash -fue
+
+PATH="$HOME/.bash/restricted"
+
+trap "true" INT TERM EXIT
+umask 0077
+
+RESTRICTED_COMMANDS="$@"
+set $SSH_ORIGINAL_COMMAND
+cmd=$1; shift
+
+for restricted in $RESTRICTED_COMMANDS; do
+  case "$cmd" in
+    $restricted)
+      exec env - TERM=$TERM PATH="$PATH:/bin:/usr/bin" ~/.bash/restricted/$cmd.cmd "$@"
+      ;;
+    esac
+done
+
+echo "ERROR: $cmd not permitted" 1>&2
+exit 1

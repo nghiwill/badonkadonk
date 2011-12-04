@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export DISPLAY="$(echo $SSH_CLIENT | awk '{print $1}'):0.0"
+
+setsid "$@" &
+
+exit 0

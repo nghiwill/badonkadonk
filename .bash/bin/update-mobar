@@ -1,0 +1,26 @@
+#!/bin/bash
+
+interval=$1; shift
+tmp_accum=$(mktemp -d -t XXXXXX)
+
+cd ~/.xmobar
+
+[[ -z $1 ]] && {
+  set -- $(ls -d -- *left | sed 's#left$##')
+}
+
+while true; do 
+  for a in "$@"; do 
+    for b in left middle right; do 
+      xmobarstat uptime$interval $b $a > $tmp_accum/$a$b
+    done
+  done
+  for a in "$@"; do 
+    for b in left middle right; do 
+      cp $tmp_accum/$a$b ./$a$b &
+    done
+  done
+  wait
+  date; sleep $interval
+done
+

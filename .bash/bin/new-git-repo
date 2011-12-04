@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+git init
+touch README
+git add -f README
+git commit -m 'initial commit'

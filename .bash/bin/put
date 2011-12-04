@@ -1,0 +1,6 @@
+#!/bin/bash -fue
+
+key=$1; shift
+post=$1; shift
+
+curl -s -d "SET/$key/$(echo "$post" | perl -MURI::Escape -pe '$_ = uri_escape $_')" "http://localhost:7379/" > /dev/null

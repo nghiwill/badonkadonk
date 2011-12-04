@@ -1,0 +1,6 @@
+#!/bin/bash -fue
+
+nm_service=$1; shift
+
+s $nm_service "$@" || true
+t $nm_service

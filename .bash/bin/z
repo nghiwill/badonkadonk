@@ -1,0 +1,11 @@
+#!/bin/bash -e
+
+[[ -z $1 ]] && exec ssh z
+
+cmd=$1; shift
+
+case $cmd in
+  cook)
+    ssh -A -R2223:localhost:22 z uname -a
+    ;;
+esac

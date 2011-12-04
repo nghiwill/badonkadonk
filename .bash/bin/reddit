@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# r reddit
+# c category
+# i image url
+# m image url md5
+
+function dump_reddits {
+  for r in "$@"; do for c in /{,{new,controversial,top}/}; do 
+    echo http://www.reddit.com/r/$r$c
+  done; done | wget -q -O - -i -
+}
+
+function find_images {
+  perl -ne 'map {print "$_\n"} grep {$_} m{(http://imgur.com/\S+?)["&]|(https?://\S+?\.(?:png|jpg|gif|jpeg))}gi' \
+  | egrep -v 'reddit.com' | sort -u
+}
+
+function display_new {
+  mkdir -p ~/.reddit
+  while read -r i; do
+    m=$(echo $i | md5); [[ -e ~/.reddit/$m ]] && continue
+    echo $i
+    touch ~/.reddit/$m
+  done | xargs b browser
+}
+
+
+[[ -z $1 ]] && {
+  echo "syntax: $(basename $0) reddit reddit ..."
+  exit 1
+}
+
+dump_reddits "$@" | find_images | display_new
+

@@ -1,0 +1,3 @@
+#!/bin/bash -fue
+
+xload -bg 'rgb:1c/1c/1c' -fg 'rgb:d7/00/00' -hl 'rgb:af/00/00' -label $(hostname -s) &

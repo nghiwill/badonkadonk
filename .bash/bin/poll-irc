@@ -1,0 +1,34 @@
+#!/bin/bash
+
+function substr {
+  echo "$1" | egrep -q "$2"
+}
+
+set -e
+me=$1; shift
+host=$1; shift
+file=$1; shift
+set +x
+
+ssh $host tail -f $file | while read -r time channel rest; do 
+  echo "$time $channel $rest"
+
+  # only interested in channels or nicks
+  substr "$channel" '^[<#&]' || continue
+
+  # direct messages
+  if substr "$channel" '^[<]'; then
+    substr "$channel" "$me" && continue
+    g "$channel" -s -d "$channel" -m "$rest"
+  else
+    # not interested in messages from me
+    nick=${rest%%>*}
+    substr "$nick" "$me" && continue
+
+    # interested on channel chat when mentions me
+    text=${rest#*>}
+    substr "$text" "$me" || continue
+    g "$channel" -s -d "$channel" -m "$text"
+  fi
+done
+

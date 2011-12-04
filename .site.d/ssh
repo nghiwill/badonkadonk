@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# remove agent info if rebooted
+if [[ $HOME/.ssh-agent-info -ot /var/run/ntpd.pid ]]; then
+  rm -vf $HOME/.gpg-agent-info $HOME/.ssh-agent-info
+fi
+
+# initialize agents once
+if [[ -x $(which gpg-agent 2>&-) ]]; then
+  if [[ ! -f $HOME/.gpg-agent-info ]]; then
+    source <(gpg-agent --daemon --write-env-file $HOME/.gpg-agent-info)
+  fi
+fi
+
+if [[ ! -f $HOME/.ssh-agent-info ]]; then
+  source <(ssh-agent > $HOME/.ssh-agent-info)
+fi
+
+# try loading existing agent
+if [[ -f $HOME/.gpg-agent-info ]]; then
+  export GPG_TTY=$(tty)
+
+  source $HOME/.gpg-agent-info > /dev/null
+  export SSH_AUTH_SOCK GPG_AGENT_INFO
+fi
+
+if [[ -f $HOME/.ssh-agent-info ]]; then
+  source $HOME/.ssh-agent-info > /dev/null
+  export SSH_AUTH_SOCK SSH_AGENT_PID
+
+  # check if keys are loaded
+  ssh-add -list 2>&1 > /dev/null
+  case $? in
+    1)
+      ssh-add $HOME/Dropbox/keys/{defn,damien,work,github} || true
+      ;;
+  esac
+fi
+
+

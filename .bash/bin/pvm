@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+nm_env=$1; shift
+nm_python="python$(python --version 2>&1 | awk '{print $2}' | cut -b1,3)"
+
+cd
+
+rm -rf .v .pvm $nm_env # debugging
+
+mkdir -p $HOME/.v/lib/$nm_python/site-packages $HOME/.pvm
+export PYTHONPATH=$HOME/.v/lib/$nm_python/site-packages
+PATH=$HOME/.v/bin:$PATH
+easy_install --prefix=$HOME/.v virtualenv mercurial pip
+virtualenv ~/.pvm/$nm_env
+source ~/.pvm/$nm_env/bin/activate
+#pip install -E ~/.pvm/$nm_env "$@"
+easy_install "$@"

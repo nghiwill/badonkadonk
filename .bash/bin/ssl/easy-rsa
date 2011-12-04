@@ -1,0 +1,35 @@
+#!/bin/bash -e
+
+pth_keys=$1; shift
+
+export EASY_RSA="$HOME/.bash/bin/ssl"
+
+export OPENSSL="openssl"
+export PKCS11TOOL="pkcs11-tool"
+export GREP="grep"
+
+export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`
+
+export KEY_DIR="$pth_keys"
+
+# PKCS11 fixes
+export PKCS11_MODULE_PATH="dummy"
+export PKCS11_PIN="dummy"
+
+export KEY_SIZE=4096
+
+# expire in ten years
+export  CA_EXPIRE=3650
+export KEY_EXPIRE=3650
+
+export KEY_COUNTRY="US"
+export KEY_PROVINCE="CA"
+export KEY_CITY="Berkeley"
+export KEY_ORG="Destructuring"
+export KEY_EMAIL="amanibhavam@destructuring.org"
+
+
+echo "Entering sub-shell"
+[[ -d $pth_keys ]] || clean-all
+cd $pth_keys
+bash

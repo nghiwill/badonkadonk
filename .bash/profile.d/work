@@ -1,0 +1,7 @@
+rs () {
+	if [[ -z $1 ]]; then
+		ssh rs
+	else
+	  ssh dev -t -A ssh "$@"
+	fi
+}

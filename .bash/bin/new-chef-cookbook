@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+nm_cookbook=$1; shift
+fqnm_cookbook="destructuring_$nm_cookbook"
+
+cd
+
+mkdir -p gems/$fqnm_cookbook
+
+if [[ -d cookbooks/$nm_cookbook ]]; then
+	rsync -ia cookbooks/$nm_cookbook gems/$fqnm_cookbook/cookbooks/
+	git rm -rf cookbooks/$nm_cookbook
+fi
+
+cd gems/$fqnm_cookbook
+
+cat > $fqnm_cookbook.gemspec <<EOF
+Gem::Specification.new do |s|
+  s.name              = "$fqnm_cookbook"
+  s.version           = "0.0.1"
+  s.date              = Time.now.strftime('%Y-%m-%d')
+  s.summary           = "destructuring's $nm_cookbook cookbook"
+  s.homepage          = "https://destructuring/cookbooks/$nm_cookbook"
+  s.email             = "amanibhavam@destructuring.org"
+  s.authors           = [ "where's the fire?" ]
+
+  s.files            += Dir.glob("cookbooks/**/*")
+
+  s.description = s.summary
+end
+EOF
+
+mkdir -p cookbooks
+git init
+git add .
+git commit -m "initial cookbook"
+new-git-repo
