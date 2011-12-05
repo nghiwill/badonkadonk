@@ -19,6 +19,7 @@ gem "alpha_omega"
 gem "tvd-microwave"
 gem "tvd-bundler"
 gem "tvd-git"
+gem "tvd-gem"
 
 # development
 gem "hub"
