@@ -91,7 +91,7 @@ GEM
     thor (0.14.6)
     tvd-bundler (0.0.3)
       microwave
-    tvd-gem (0.0.2)
+    tvd-gem (0.0.3)
       microwave
     tvd-git (0.0.8)
       microwave
