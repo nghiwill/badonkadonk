@@ -91,7 +91,9 @@ GEM
     thor (0.14.6)
     tvd-bundler (0.0.3)
       microwave
-    tvd-git (0.0.7)
+    tvd-gem (0.0.1)
+      microwave
+    tvd-git (0.0.8)
       microwave
     tvd-microwave (0.0.3)
       microwave
@@ -111,6 +113,7 @@ DEPENDENCIES
   hub
   interactive_editor
   tvd-bundler
+  tvd-gem
   tvd-git
   tvd-microwave
   wirble
