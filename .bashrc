@@ -6,15 +6,13 @@ for a in $(find $HOME/.bash/profile.d ! -type d | sort); do
   source $a
 done
 
-_old_cwd=$(pwd)
+if [[ -d "$HOME/.pancake" ]]; then
+  _old_cwd=$(pwd)
 
-if [[ -d /opt/infra ]]; then
-  export PANCAKE_ROOT="/opt/infra"
+  export PANCAKE_ROOT="$HOME/.pancake"
+  cd $PANCAKE_ROOT
   source $PANCAKE_ROOT/bin/profile
 
-  for p in xmonad data virt dev infra noop; do
-    pancake $p
-  done
+  cd $_old_cwd
 fi
 
-cd $_old_cwd
