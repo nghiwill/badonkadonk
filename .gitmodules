@@ -7,3 +7,6 @@
 [submodule ".rvm"]
 	path = .rvm
 	url = https://raw.github.com/HeSYINUvSBZfxqA/rvm
+[submodule ".pancake"]
+	path = .pancake
+	url = https://raw.github.com/HeSYINUvSBZfxqA/pancake
