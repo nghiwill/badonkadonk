@@ -3,7 +3,7 @@
 	url = https://raw.github.com/HeSYINUvSBZfxqA/junas
 [submodule ".cue"]
 	path = .cue
-	url = http://raw.github.com/HeSYINUvSBZfxqA/cue
+	url = https://raw.github.com/HeSYINUvSBZfxqA/cue
 [submodule ".rvm"]
 	path = .rvm
 	url = https://raw.github.com/HeSYINUvSBZfxqA/rvm
