@@ -21,7 +21,4 @@ gem "tvd-bundler"
 gem "tvd-git"
 gem "tvd-gem"
 
-# development
-gem "hub"
-
 # vim: set ft=ruby:
