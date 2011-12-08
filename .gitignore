@@ -25,3 +25,5 @@
 /Public/
 /Sites/
 /VirtualBox VMs/
+/.cabal/
+/.ghc/
